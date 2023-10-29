@@ -1,0 +1,23 @@
+services:
+  react:
+    container_name: my_page
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: .
+        target: /frontend
+    ports:
+      - 3010:3000
+    # env_file:
+    #   - .env
+    networks:
+      - default
+    tty: true
+    restart: always
+
+networks:
+  default:
+    name: ${USER_NAME}
+    external: true
