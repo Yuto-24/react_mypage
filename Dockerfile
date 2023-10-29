@@ -1,6 +1,6 @@
 FROM node:20.9
 
-WORKDIR /temp
+WORKDIR /tmp
 
 RUN apt update && \
     apt install git -y && \
@@ -10,4 +10,7 @@ RUN apt update && \
 
 WORKDIR /frontend
 
-CMD [ "sh", "-c", "run.sh" ]
+ADD ./run.sh /tmp/run.sh
+RUN chmod 777 /tmp/run.sh
+
+CMD [ "sh", "-c", "/tmp/run.sh" ]
